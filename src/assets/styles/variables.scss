@@ -2,7 +2,7 @@
 $nav-height: 50px;
 $sub-nav-height: 40px;
 
-$main-container-height: calc(100vh - $nav-height);
+$main-container-height: calc(100vh - 50px);
 $secondary-container-height: calc(100vh - 90px);
 $tertiary-container-height: calc(100vh - 130px);
 

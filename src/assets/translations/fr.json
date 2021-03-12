@@ -1,0 +1,5 @@
+{
+    "home": {"title":"Bienvenue !!"},
+    "about": { "title": "Page d'information"},
+    "nav": { "contact": "contact", "about": "à propos" }
+}

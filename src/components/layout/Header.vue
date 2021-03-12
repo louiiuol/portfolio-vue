@@ -1,100 +1,73 @@
 <template>
-  <nav id="main-nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+	<nav id="main-nav">
+		<router-link to="/">
+			<h3>L<span>ouis </span>G<span>ODLEWSKI</span></h3>
+		</router-link>
+		<ul class="links">
+			<li>
+				<router-link to="/about">{{ $t("nav.about") }}</router-link>
+			</li>
+
+			<li>
+				<a href="mailto:louis.godlewski@gmail.com">{{ $t("nav.contact") }}</a>
+			</li>
+			<li>
+				<select class="lang" @change="changeLocale($event.target.value)">
+					<option value="en">🇬🇧</option>
+					<option value="fr">🇫🇷</option>
+				</select>
+			</li>
+		</ul>
+	</nav>
 </template>
 
 <script lang="ts">
 import { Vue } from "vue-class-component";
+import { i18n } from "@/main";
 
-export default class Header extends Vue {}
+export default class Header extends Vue {
+	protected changeLocale(lang: string): void {
+		i18n.global.locale = lang;
+	}
+}
 </script>
 
 <style scoped lang="scss">
 nav#main-nav {
-  @include positioned(fixed, 0, 0);
-  @include sized(100%, $nav-height);
-  @include flex(row nowrap, space-between);
-  @include shadowed;
-  background: $white;
-  color: $primary;
-  padding: $pad-sides-md;
-  z-index: $z-main-nav;
-  h3 {
-    font-size: 1.5rem;
-    span {
-      max-width: 0;
-      transition: $transition-fast;
-      display: inline-block;
-      overflow: hidden;
-      vertical-align: bottom;
-      opacity: 0;
-      margin-right: 5px;
-    }
-    &:hover span {
-      max-width: 250px;
-      opacity: 1;
-    }
-  }
-  .hamburger {
-    display: none;
-  }
-  @include for-phone-and-tablet {
-    .hamburger {
-      display: block;
-      @include sized(48px, 48px);
-      cursor: pointer;
-      svg #hamburger .dash {
-        transition: all 0.6s ease;
-        &.center {
-          opacity: 1;
-        }
-        &.top,
-        &.bottom {
-          transform: rotate(0deg) translate(0%, 0%);
-        }
-      }
-      &.toggled svg #hamburger .dash {
-        transition: all 0.6s ease;
-        &.top {
-          transform: rotate(45deg) translate(25%, -25%);
-        }
-        &.center {
-          opacity: 0;
-        }
-        &.bottom {
-          transform: rotate(-45deg) translate(-50%, 3%);
-        }
-      }
-    }
-    ul.links {
-      @include sized(100%, $main-container-height);
-      position: fixed;
-      left: -150vw;
-      top: 50px;
-      text-align: center;
-      flex-direction: column;
-      background: $primary-light;
-      transition: 0.6s ease;
-      li {
-        display: block;
-        height: 100px;
-        margin: 2vh 0;
-        font-size: 2rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        a {
-          color: $beige;
-          &::before {
-            background-color: $beige;
-          }
-        }
-      }
-      &.expanded {
-        left: 0;
-      }
-    }
-  }
+	@include sized(100%, $nav-height);
+	@include flex(row nowrap, space-between);
+	@include shadowed;
+	position: fixed;
+	top: 0;
+	background: $white;
+	color: $primary;
+	padding: $pad-sides-md;
+	z-index: $z-main-nav;
+	h3 {
+		font-size: 1.5rem;
+		span {
+			max-width: 0;
+			transition: $transition-fast;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: bottom;
+			opacity: 0;
+			margin-right: 5px;
+		}
+		&:hover span {
+			max-width: 250px;
+			opacity: 1;
+		}
+	}
+	.hamburger {
+		display: none;
+	}
+	ul.links {
+		@include flex(row nowrap, space-evenly);
+		li {
+			list-style-type: none;
+			padding: 0.5rem;
+		}
+	}
 }
 </style>

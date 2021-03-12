@@ -1,18 +1,21 @@
 <template>
-  <Header />
-  <router-view />
+	<Header />
+	<main class="container">
+		<router-view />
+	</main>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+
 import Header from "@/components/layout/Header.vue";
 
 @Options({
-  components: {
-    Header
-  }
+	components: {
+		Header
+	}
 })
-export default class Home extends Vue {}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">
