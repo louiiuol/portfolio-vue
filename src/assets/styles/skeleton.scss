@@ -1,0 +1,70 @@
+/* GLOBAL LAYOUT STYLES */
+
+/* MOUSE SELECTION */
+::selection {
+    background: $accent;
+    color: $beige;
+}
+
+/* GLOBAL SCROLLBARS STYLES */
+::-webkit-scrollbar {
+    width: 5px;
+    z-index: 0;
+} /* scrollbar width */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: rgba($color: $beige, $alpha: 0.6);
+} /* Track */
+::-webkit-scrollbar-thumb {
+    background: $accent;
+    border-radius: 10px;
+} /* Handle */
+::-webkit-scrollbar-thumb:hover {
+    background: $primary-light;
+} /* Handle on hover */
+
+/* RESET DEFAULT SYLES GLOBALLY*/
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+/* APPLICATION'S MINIMUM HEIGHT IF THE CONTENT IS TOO SHORT */
+html,
+body,
+#portfolio {
+    min-height: 100vh;
+}
+
+/* APPLICATION'S BACKGROUND */
+#portfolio {
+    padding-top: $nav-height;
+    @include flex(column nowrap, start);
+    position: relative;
+    background: radial-gradient(
+        ellipse farthest-corner at 90% 90%,
+        $primary-light,
+        $primary 100%
+    );
+    background-size: 300% 300%;
+    animation: gradient 20s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
