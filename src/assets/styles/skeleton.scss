@@ -36,6 +36,11 @@ html {
 	box-sizing: border-box;
 }
 
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
 /* APPLICATION'S MINIMUM HEIGHT IF THE CONTENT IS TOO SHORT */
 html,
 body,
@@ -57,11 +62,6 @@ body,
 	animation: gradient 20s ease infinite;
 }
 
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -72,4 +72,84 @@ a {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+/* FONTS IMPORT */
+@include font-face(
+	"poppins",
+	"assets/fonts/poppins/Regular.ttf",
+	normal,
+	normal
+);
+@include font-face(
+	"poppins",
+	"assets/fonts/poppins/Regular-Italic.ttf",
+	normal,
+	italic
+);
+@include font-face(
+	"poppins",
+	"assets/fonts/poppins/Black-Italic.ttf",
+	bold,
+	italic
+);
+@include font-face("poppins", "assets/fonts/poppins/Black.ttf", bold, normal);
+/* GLOBAL FONT STYLES */
+p,
+.is-bold,
+strong,
+.is-italic,
+em,
+.content,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+	font-family: poppins, sans-serif;
+}
+p {
+	&.legend {
+		font-style: italic;
+		color: $legend;
+	}
+	&.is-bold,
+	strong {
+		font-weight: bold;
+	}
+	&.is-italic,
+	em {
+		font-style: italic;
+	}
+	&.is-centered,
+	em {
+		text-align: center;
+	}
+}
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: $primary;
+	transition: color 0.3s;
+	&:hover {
+		color: $primary-light;
+	}
+}
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	letter-spacing: 1.5px;
 }
