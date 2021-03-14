@@ -7,17 +7,12 @@
 			<li>
 				<router-link to="/about">{{ $t("nav.about") }}</router-link>
 			</li>
-			<li>
+			<li class="has-icon">
 				<a href="mailto:louis.godlewski@gmail.com">
-					<Icon
-						name="calendar"
-						size="sm"
-						class="pointed"
-						:alt="$t(`nav.contact`)"
-					/>
+					<Icon name="calendar" size="sm" :alt="$t(`nav.contact`)" />
 				</a>
 			</li>
-			<li>
+			<li class="has-icon">
 				<Icon
 					@click="changeLocale(name.substr(0, 2))"
 					:name="'flag-' + name"
@@ -31,19 +26,21 @@
 </template>
 
 <script lang="ts">
-import { Vue, Options } from "vue-class-component";
+import { defineComponent, computed } from "vue";
 import { i18n } from "@/main";
-import Icon from "@/components/ui/Icon.vue";
-
-@Options({ components: { Icon } })
-export default class Header extends Vue {
-	get name() {
-		return i18n.global.locale === "fr" ? "english" : "french";
+import Icon from "@/components/shared/ui/Icon.vue";
+export default defineComponent({
+	name: "Header",
+	components: { Icon },
+	setup() {
+		return {
+			changeLocale: function(lang: string): void {
+				i18n.global.locale = lang;
+			},
+			name: computed(() => (i18n.global.locale === "fr" ? "english" : "french"))
+		};
 	}
-	protected changeLocale(lang: string): void {
-		i18n.global.locale = lang;
-	}
-}
+});
 </script>
 
 <style lang="scss">
@@ -76,9 +73,13 @@ nav#main-nav {
 		li {
 			list-style-type: none;
 			height: $nav-height;
+			min-width: 75px;
 			padding: 0.7rem;
 			padding-top: ($nav-height)/4;
 			border-radius: $radius-xs;
+			&.has-icon {
+				min-width: 50px;
+			}
 			&:hover {
 				background: $beige;
 			}

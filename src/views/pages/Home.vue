@@ -1,19 +1,20 @@
 <template>
 	<Container id="home" class="rows justify-evenly items-stretch">
 		<Icon name="logo" alt="Louis Godlewski's logo" />
-		<h1 class=" title beige centered">
+		<h1 class=" title beige centered typist">
 			{{ $t("home.title") }}
 		</h1>
 	</Container>
 </template>
-
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import Icon from "@/components/ui/Icon.vue";
+import { defineComponent } from "vue";
+import Icon from "@/components/shared/ui/Icon.vue";
 import Container from "@/components/shared/layout/Container.vue";
 
-@Options({ components: { Icon, Container } })
-export default class Home extends Vue {}
+export default defineComponent({
+	name: "Home",
+	components: { Icon, Container }
+});
 </script>
 
 <style lang="scss">

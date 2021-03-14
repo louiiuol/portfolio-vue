@@ -1,8 +1,8 @@
-//! ===================
-//! GLOBAL RESET STYLES
-//! ===================*/
+//* ===================
+//* GLOBAL RESET STYLES
+//* ===================*/
 
-//! Removes all default spaces and sizing
+//* Removes all default spaces and sizing
 *,
 *::after,
 *::before {
@@ -11,12 +11,12 @@
 	box-sizing: inherit;
 }
 
-//! Root is the box of reference
+//* Root is the box of reference
 html {
 	box-sizing: border-box;
 }
 
-//! Removes purple color & basic link style
+//* Removes purple color & basic link style
 a {
 	color: $primary;
 	transition: color $transition-fastest;
@@ -26,51 +26,51 @@ a {
 	}
 }
 
-//! =======================
-//! GLOBAL SCROLLBAR STYLES
-//! =======================*/
+//* =======================
+//* GLOBAL SCROLLBAR STYLES
+//* =======================*/
 
-//! Mouse selection
+//* Mouse selection
 ::selection {
 	background: $accent;
 	color: $beige;
 }
 
-//! Scrollbar's width
+//* Scrollbar's width
 ::-webkit-scrollbar {
 	width: 5px;
 	z-index: 0;
 }
 
-//! Track
+//* Track
 ::-webkit-scrollbar-track {
 	border-radius: $radius-md;
 	background-color: rgba($beige, 0.6);
 }
 
-//! Handle
+//* Handle
 ::-webkit-scrollbar-thumb {
 	background: $accent;
 	border-radius: $radius-sm;
 }
 
-//! Handle on hover
+//* Handle on hover
 ::-webkit-scrollbar-thumb:hover {
 	background: $primary-light;
 }
 
-//! =================
-//! GLOBAL APP STYLES
-//! =================*/
+//* =================
+//* GLOBAL APP STYLES
+//* =================*/
 
-//! Application's minimum height is 100% of Viewport Height
+//* Application's minimum height is 100% of Viewport Height
 html,
 body,
 #portfolio {
 	min-height: $window-height;
 }
 
-//! Application's background
+//* Application's background
 #portfolio {
 	position: relative;
 	background: radial-gradient(
@@ -82,7 +82,7 @@ body,
 	animation: gradient 20s ease infinite;
 }
 
-//! Application background's animation
+//* Application background's animation
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -95,17 +95,18 @@ body,
 	}
 }
 
-//! ==================
-//! GLOBAL FONT STYLES
-//! ==================*/
+//* ==================
+//* GLOBAL FONT STYLES
+//* ==================*/
 
-//! FONTS IMPORT
+//* FONTS IMPORT
+@include font-face("open24", "Open-24", normal, normal);
 @include font-face("poppins", "Regular", normal, normal);
 @include font-face("poppins", "Regular-Italic", normal, italic);
 @include font-face("poppins", "Black-Italic", bold, italic);
 @include font-face("poppins", "Black", bold, normal);
 
-//! Replaces default font for every elements
+//* Replaces default font for every elements
 p,
 strong,
 .is-italic,
@@ -124,7 +125,13 @@ a {
 	letter-spacing: 1px;
 }
 
-//! Defines fonts styles for content & title
+//* Defines fonts styles for Typist title
+// TODO: export to specific component
+.typist {
+	font-family: open24, sans-serif;
+}
+
+//* Defines fonts styles for content & title
 p,
 h1,
 h2,
@@ -161,7 +168,7 @@ h6 {
 	}
 }
 
-//! Defines styles for <p> tag
+//* Defines styles for <p> tag
 p {
 	&.justified {
 		text-align: justify;
@@ -197,11 +204,11 @@ p {
 	}
 }
 
-//! =======================
-//! GLOBAL THEME STYLES
-//! =======================*/
+//* =======================
+//* GLOBAL THEME STYLES
+//* =======================*/
 
-//! Texts' color
+//* Texts' color
 .primary {
 	color: $primary;
 }
@@ -227,7 +234,7 @@ p {
 	color: $legend-dark;
 }
 
-//! Backgrounds' color
+//* Backgrounds' color
 .has-bg {
 	&-primary {
 		background-color: $primary;
@@ -257,4 +264,103 @@ p {
 
 .pointed {
 	cursor: pointer;
+}
+
+.skeleton:empty {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	background: $beige-darker;
+	&.block {
+		height: 1em;
+		width: 100%;
+		display: block;
+	}
+	&.circle {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+	}
+
+	&.avatar {
+		display: inline-block;
+		svg {
+			max-width: 100%;
+			height: auto;
+		}
+		rect {
+			fill: $beige-darker;
+		}
+		path {
+			fill: $legend-dark;
+		}
+	}
+
+	&.image {
+		display: inline-block;
+		svg {
+			max-width: 100%;
+			height: auto;
+		}
+		polygon {
+			fill: $beige-darker;
+		}
+		path {
+			fill: $legend-dark;
+		}
+	}
+
+	&.skeleton-text {
+		font-family: "skeleton" !important;
+		user-select: none;
+		&,
+		& * {
+			color: var($beige-darker) !important;
+			letter-spacing: -0.03em !important;
+		}
+	}
+
+	&.has-effect {
+		-webkit-mask-image: linear-gradient(
+			to right,
+			transparent 0%,
+			black 25%,
+			black 75%,
+			transparent 100%
+		);
+		mask-image: linear-gradient(
+			to right,
+			transparent 0%,
+			black 25%,
+			black 75%,
+			transparent 100%
+		);
+		-webkit-mask-size: 200% 100%;
+		mask-size: 200% 100%;
+		-webkit-mask-repeat: repeat;
+		mask-repeat: repeat;
+		-webkit-mask-position: 50% top;
+		mask-position: 50% top;
+		animation: skeleton-effect 2s infinite;
+	}
+}
+@keyframes skeleton-effect {
+	0% {
+		-webkit-mask-position: 50% top;
+		mask-position: 50% top;
+		transform: scale(1);
+	}
+	40% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.9);
+	}
+	90% {
+		transform: scale(1);
+	}
+	100% {
+		-webkit-mask-position: -150% top;
+		mask-position: -150% top;
+	}
 }

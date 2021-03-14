@@ -10,9 +10,8 @@ const routes: Array<RouteRecordRaw> = [
 	{
 		path: "/about",
 		name: "About",
-		// this generates a separate chunk for this route
-		// which is lazy-loaded when the route is visited.
-		// webpackChunkName: "about"
+		//* this generates a separate chunk for this route
+		//* which is lazy-loaded when the route is visited.
 		component: () => import("../views/pages/About.vue")
 	}
 ];

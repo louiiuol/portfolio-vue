@@ -1,30 +1,47 @@
 <template>
-	<svg :id="name" :alt="alt" :class="size ? `icon-${size}` : 'icon'">
-		<use :href="href"></use>
+	<svg :id="name" :alt="alt" :class="className">
+		<use v-if="href" :href="href"></use>
 	</svg>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { defineComponent, computed } from "vue";
 
-@Options({
+export default defineComponent({
+	name: "Icon",
 	props: {
 		name: String,
 		size: String,
 		alt: String
+	},
+	setup(props) {
+		return {
+			//* Returns dynamically imported icon with given props.name
+			// TODO add verifications for icons' name
+			href: computed(() => {
+				let svg: string;
+				try {
+					svg = require(`@/assets/images/svg/icons.svg`) + `#${props.name}`;
+				} catch (error) {
+					svg = "";
+					console.error(error);
+				}
+				return svg;
+			}),
+			//* Returns dynamically classes depending on given props.size / shape
+			// TODO add more style depending on shapes
+			className: computed(() => (props.size ? `icon-${props.size}` : "icon"))
+		};
 	}
-})
-export default class Icon extends Vue {
-	name!: string;
-	//! Import dynamically icon with given props.name above
-	get href() {
-		return require(`@/assets/images/svg/icons.svg`) + `#${this.name}`;
-	}
-}
+});
 </script>
 
 <style lang="scss" scoped>
 svg {
+	&:empty {
+		background: $beige-darker;
+		border-radius: $radius-sm;
+	}
 	fill: currentColor;
 	&.icon {
 		width: 100%;

@@ -1,6 +1,6 @@
 <template>
 	<Container id="about" class="has-space justify-evenly items-start">
-		<h1 class="beige">
+		<h1 class="beige typist">
 			<Icon
 				name="infos"
 				size="sm"
@@ -12,10 +12,12 @@
 	</Container>
 </template>
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import Icon from "@/components/ui/Icon.vue";
+import { defineComponent } from "vue";
+import Icon from "@/components/shared/ui/Icon.vue";
 import Container from "@/components/shared/layout/Container.vue";
 
-@Options({ components: { Icon, Container } })
-export default class About extends Vue {}
+export default defineComponent({
+	name: "About",
+	components: { Icon, Container }
+});
 </script>
