@@ -1,29 +1,8 @@
-/* GLOBAL LAYOUT STYLES */
+//* ===================
+//* GLOBAL RESET STYLES
+//* ===================*/
 
-/* MOUSE SELECTION */
-::selection {
-	background: $accent;
-	color: $beige;
-}
-
-/* GLOBAL SCROLLBARS STYLES */
-::-webkit-scrollbar {
-	width: 5px;
-	z-index: 0;
-} /* scrollbar width */
-::-webkit-scrollbar-track {
-	border-radius: 10px;
-	background-color: rgba($color: $beige, $alpha: 0.6);
-} /* Track */
-::-webkit-scrollbar-thumb {
-	background: $accent;
-	border-radius: 10px;
-} /* Handle */
-::-webkit-scrollbar-thumb:hover {
-	background: $primary-light;
-} /* Handle on hover */
-
-/* RESET DEFAULT SYLES GLOBALLY*/
+//* Removes all default spaces and sizing
 *,
 *::after,
 *::before {
@@ -32,21 +11,67 @@
 	box-sizing: inherit;
 }
 
+//* Root is the box of reference
 html {
 	box-sizing: border-box;
 }
 
-/* APPLICATION'S MINIMUM HEIGHT IF THE CONTENT IS TOO SHORT */
+//* Removes purple color & basic link style
+a {
+	color: $primary;
+	transition: color $transition-fastest;
+	text-decoration: none;
+	&:hover {
+		color: $primary-light;
+	}
+}
+
+//* =======================
+//* GLOBAL SCROLLBAR STYLES
+//* =======================*/
+
+//* Mouse selection
+::selection {
+	background: $accent;
+	color: $beige;
+}
+
+//* Scrollbar's width
+::-webkit-scrollbar {
+	width: 5px;
+	z-index: 0;
+}
+
+//* Track
+::-webkit-scrollbar-track {
+	border-radius: $radius-md;
+	background-color: rgba($beige, 0.6);
+}
+
+//* Handle
+::-webkit-scrollbar-thumb {
+	background: $accent;
+	border-radius: $radius-sm;
+}
+
+//* Handle on hover
+::-webkit-scrollbar-thumb:hover {
+	background: $primary-light;
+}
+
+//* =================
+//* GLOBAL APP STYLES
+//* =================*/
+
+//* Application's minimum height is 100% of Viewport Height
 html,
 body,
 #portfolio {
-	min-height: 100vh;
+	min-height: $window-height;
 }
 
-/* APPLICATION'S BACKGROUND */
+//* Application's background
 #portfolio {
-	padding-top: $nav-height;
-	@include flex(column nowrap, start);
 	position: relative;
 	background: radial-gradient(
 		ellipse farthest-corner at 90% 90%,
@@ -57,11 +82,7 @@ body,
 	animation: gradient 20s ease infinite;
 }
 
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
+//* Application background's animation
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -71,5 +92,275 @@ a {
 	}
 	100% {
 		background-position: 0% 50%;
+	}
+}
+
+//* ==================
+//* GLOBAL FONT STYLES
+//* ==================*/
+
+//* FONTS IMPORT
+@include font-face("open24", "Open-24", normal, normal);
+@include font-face("poppins", "Regular", normal, normal);
+@include font-face("poppins", "Regular-Italic", normal, italic);
+@include font-face("poppins", "Black-Italic", bold, italic);
+@include font-face("poppins", "Black", bold, normal);
+
+//* Replaces default font for every elements
+p,
+strong,
+.is-italic,
+em,
+.content,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+	font-family: poppins, sans-serif;
+	font-style: normal;
+	paint-order: stroke fill;
+	letter-spacing: 1px;
+}
+
+//* Defines fonts styles for Typist title
+// TODO: export to specific component
+.typist {
+	font-family: open24, sans-serif;
+}
+
+//* Defines fonts styles for content & title
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	&.content,
+	&.title {
+		overflow-wrap: break-word;
+		word-break: break-word;
+		white-space: pre-line;
+		word-spacing: 3px;
+	}
+	&.uppercase {
+		text-transform: uppercase;
+	}
+	&.lowercase {
+		text-transform: lowercase;
+	}
+	&.centered {
+		text-align: center;
+	}
+
+	&.righted {
+		text-align: right;
+	}
+
+	.indented {
+		text-indent: 10%;
+	}
+	.nowrap {
+		white-space: nowrap;
+	}
+}
+
+//* Defines styles for <p> tag
+p {
+	&.justified {
+		text-align: justify;
+		text-align-last: auto;
+		&-left {
+			text-align: justify;
+			text-align-last: left;
+		}
+		&-center {
+			text-align: justify;
+			text-align-last: center;
+		}
+		&-right {
+			text-align: justify;
+			text-align-last: right;
+		}
+	}
+	&.legend {
+		font-style: italic;
+		color: $legend;
+	}
+	&.is-bold,
+	strong {
+		font-weight: bold;
+	}
+	&.is-italic,
+	em {
+		font-style: italic;
+	}
+	&.is-centered,
+	em {
+		text-align: center;
+	}
+}
+
+//* =======================
+//* GLOBAL THEME STYLES
+//* =======================*/
+
+//* Texts' color
+.primary {
+	color: $primary;
+}
+.primary-light {
+	color: $primary-light;
+}
+.accent {
+	color: $accent;
+}
+.white {
+	color: $white;
+}
+.beige {
+	color: $beige;
+}
+.legend-light {
+	color: $legend-light;
+}
+.legend {
+	color: $legend;
+}
+.legend-dark {
+	color: $legend-dark;
+}
+
+//* Backgrounds' color
+.has-bg {
+	&-primary {
+		background-color: $primary;
+	}
+	&-primary-light {
+		background-color: $primary-light;
+	}
+	&-accent {
+		background-color: $accent;
+	}
+	&-white {
+		background-color: $white;
+	}
+	&-beige {
+		background-color: $beige;
+	}
+	&-legend-light {
+		background-color: $legend-light;
+	}
+	&-legend {
+		background-color: $legend;
+	}
+	&-legend-dark {
+		background-color: $legend-dark;
+	}
+}
+
+.pointed {
+	cursor: pointer;
+}
+
+.skeleton:empty {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	background: $beige-darker;
+	&.block {
+		height: 1em;
+		width: 100%;
+		display: block;
+	}
+	&.circle {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+	}
+
+	&.avatar {
+		display: inline-block;
+		svg {
+			max-width: 100%;
+			height: auto;
+		}
+		rect {
+			fill: $beige-darker;
+		}
+		path {
+			fill: $legend-dark;
+		}
+	}
+
+	&.image {
+		display: inline-block;
+		svg {
+			max-width: 100%;
+			height: auto;
+		}
+		polygon {
+			fill: $beige-darker;
+		}
+		path {
+			fill: $legend-dark;
+		}
+	}
+
+	&.skeleton-text {
+		font-family: "skeleton" !important;
+		user-select: none;
+		&,
+		& * {
+			color: var($beige-darker) !important;
+			letter-spacing: -0.03em !important;
+		}
+	}
+
+	&.has-effect {
+		-webkit-mask-image: linear-gradient(
+			to right,
+			transparent 0%,
+			black 25%,
+			black 75%,
+			transparent 100%
+		);
+		mask-image: linear-gradient(
+			to right,
+			transparent 0%,
+			black 25%,
+			black 75%,
+			transparent 100%
+		);
+		-webkit-mask-size: 200% 100%;
+		mask-size: 200% 100%;
+		-webkit-mask-repeat: repeat;
+		mask-repeat: repeat;
+		-webkit-mask-position: 50% top;
+		mask-position: 50% top;
+		animation: skeleton-effect 2s infinite;
+	}
+}
+@keyframes skeleton-effect {
+	0% {
+		-webkit-mask-position: 50% top;
+		mask-position: 50% top;
+		transform: scale(1);
+	}
+	40% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.9);
+	}
+	90% {
+		transform: scale(1);
+	}
+	100% {
+		-webkit-mask-position: -150% top;
+		mask-position: -150% top;
 	}
 }
