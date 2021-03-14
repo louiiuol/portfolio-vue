@@ -3,7 +3,8 @@ module.exports = {
 	css: {
 		loaderOptions: {
 			sass: {
-				additionalData: `@import "@/assets/styles/index.module.scss";`
+				//! Injects variables.scss into every .vue files
+				additionalData: `@import "@/assets/styles/variables.scss";`
 			}
 		}
 	}

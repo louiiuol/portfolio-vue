@@ -1,29 +1,8 @@
-/* GLOBAL LAYOUT STYLES */
+//! ===================
+//! GLOBAL RESET STYLES
+//! ===================*/
 
-/* MOUSE SELECTION */
-::selection {
-	background: $accent;
-	color: $beige;
-}
-
-/* GLOBAL SCROLLBARS STYLES */
-::-webkit-scrollbar {
-	width: 5px;
-	z-index: 0;
-} /* scrollbar width */
-::-webkit-scrollbar-track {
-	border-radius: 10px;
-	background-color: rgba($color: $beige, $alpha: 0.6);
-} /* Track */
-::-webkit-scrollbar-thumb {
-	background: $accent;
-	border-radius: 10px;
-} /* Handle */
-::-webkit-scrollbar-thumb:hover {
-	background: $primary-light;
-} /* Handle on hover */
-
-/* RESET DEFAULT SYLES GLOBALLY*/
+//! Removes all default spaces and sizing
 *,
 *::after,
 *::before {
@@ -32,26 +11,67 @@
 	box-sizing: inherit;
 }
 
+//! Root is the box of reference
 html {
 	box-sizing: border-box;
 }
 
+//! Removes purple color & basic link style
 a {
-	color: inherit;
+	color: $primary;
+	transition: color $transition-fastest;
 	text-decoration: none;
+	&:hover {
+		color: $primary-light;
+	}
 }
 
-/* APPLICATION'S MINIMUM HEIGHT IF THE CONTENT IS TOO SHORT */
+//! =======================
+//! GLOBAL SCROLLBAR STYLES
+//! =======================*/
+
+//! Mouse selection
+::selection {
+	background: $accent;
+	color: $beige;
+}
+
+//! Scrollbar's width
+::-webkit-scrollbar {
+	width: 5px;
+	z-index: 0;
+}
+
+//! Track
+::-webkit-scrollbar-track {
+	border-radius: $radius-md;
+	background-color: rgba($beige, 0.6);
+}
+
+//! Handle
+::-webkit-scrollbar-thumb {
+	background: $accent;
+	border-radius: $radius-sm;
+}
+
+//! Handle on hover
+::-webkit-scrollbar-thumb:hover {
+	background: $primary-light;
+}
+
+//! =================
+//! GLOBAL APP STYLES
+//! =================*/
+
+//! Application's minimum height is 100% of Viewport Height
 html,
 body,
 #portfolio {
-	min-height: 100vh;
+	min-height: $window-height;
 }
 
-/* APPLICATION'S BACKGROUND */
+//! Application's background
 #portfolio {
-	padding-top: $nav-height;
-	@include flex(column nowrap, start);
 	position: relative;
 	background: radial-gradient(
 		ellipse farthest-corner at 90% 90%,
@@ -62,6 +82,7 @@ body,
 	animation: gradient 20s ease infinite;
 }
 
+//! Application background's animation
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -74,29 +95,18 @@ body,
 	}
 }
 
-/* FONTS IMPORT */
-@include font-face(
-	"poppins",
-	"assets/fonts/poppins/Regular.ttf",
-	normal,
-	normal
-);
-@include font-face(
-	"poppins",
-	"assets/fonts/poppins/Regular-Italic.ttf",
-	normal,
-	italic
-);
-@include font-face(
-	"poppins",
-	"assets/fonts/poppins/Black-Italic.ttf",
-	bold,
-	italic
-);
-@include font-face("poppins", "assets/fonts/poppins/Black.ttf", bold, normal);
-/* GLOBAL FONT STYLES */
+//! ==================
+//! GLOBAL FONT STYLES
+//! ==================*/
+
+//! FONTS IMPORT
+@include font-face("poppins", "Regular", normal, normal);
+@include font-face("poppins", "Regular-Italic", normal, italic);
+@include font-face("poppins", "Black-Italic", bold, italic);
+@include font-face("poppins", "Black", bold, normal);
+
+//! Replaces default font for every elements
 p,
-.is-bold,
 strong,
 .is-italic,
 em,
@@ -109,8 +119,66 @@ h5,
 h6,
 a {
 	font-family: poppins, sans-serif;
+	font-style: normal;
+	paint-order: stroke fill;
+	letter-spacing: 1px;
 }
+
+//! Defines fonts styles for content & title
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	&.content,
+	&.title {
+		overflow-wrap: break-word;
+		word-break: break-word;
+		white-space: pre-line;
+		word-spacing: 3px;
+	}
+	&.uppercase {
+		text-transform: uppercase;
+	}
+	&.lowercase {
+		text-transform: lowercase;
+	}
+	&.centered {
+		text-align: center;
+	}
+
+	&.righted {
+		text-align: right;
+	}
+
+	.indented {
+		text-indent: 10%;
+	}
+	.nowrap {
+		white-space: nowrap;
+	}
+}
+
+//! Defines styles for <p> tag
 p {
+	&.justified {
+		text-align: justify;
+		text-align-last: auto;
+		&-left {
+			text-align: justify;
+			text-align-last: left;
+		}
+		&-center {
+			text-align: justify;
+			text-align-last: center;
+		}
+		&-right {
+			text-align: justify;
+			text-align-last: right;
+		}
+	}
 	&.legend {
 		font-style: italic;
 		color: $legend;
@@ -128,28 +196,65 @@ p {
 		text-align: center;
 	}
 }
-a,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+//! =======================
+//! GLOBAL THEME STYLES
+//! =======================*/
+
+//! Texts' color
+.primary {
 	color: $primary;
-	transition: color 0.3s;
-	&:hover {
-		color: $primary-light;
+}
+.primary-light {
+	color: $primary-light;
+}
+.accent {
+	color: $accent;
+}
+.white {
+	color: $white;
+}
+.beige {
+	color: $beige;
+}
+.legend-light {
+	color: $legend-light;
+}
+.legend {
+	color: $legend;
+}
+.legend-dark {
+	color: $legend-dark;
+}
+
+//! Backgrounds' color
+.has-bg {
+	&-primary {
+		background-color: $primary;
+	}
+	&-primary-light {
+		background-color: $primary-light;
+	}
+	&-accent {
+		background-color: $accent;
+	}
+	&-white {
+		background-color: $white;
+	}
+	&-beige {
+		background-color: $beige;
+	}
+	&-legend-light {
+		background-color: $legend-light;
+	}
+	&-legend {
+		background-color: $legend;
+	}
+	&-legend-dark {
+		background-color: $legend-dark;
 	}
 }
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	letter-spacing: 1.5px;
+
+.pointed {
+	cursor: pointer;
 }

@@ -1,5 +1,12 @@
 {
     "home": {"title":"Welcome !!"},
     "about": { "title": "This is an about page"},
-    "nav": { "contact": "contact", "about": "about" }
+    "nav": { 
+        "contact": "contact icon",
+        "about": "about",
+        "lang": {
+            "english": "english's flag",
+            "french": "french's flag"
+        }
+    }
 }

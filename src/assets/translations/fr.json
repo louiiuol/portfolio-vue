@@ -1,5 +1,12 @@
 {
     "home": {"title":"Bienvenue !!"},
     "about": { "title": "Page d'information"},
-    "nav": { "contact": "contact", "about": "à propos" }
+    "nav": {
+        "contact": "icône de contact",
+        "about": "à propos",
+        "lang": {
+            "english": "drapeau anglais",
+            "french": "drapeau français"
+        }
+    }
 }

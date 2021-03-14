@@ -3,42 +3,54 @@
 		<router-link to="/">
 			<h3>L<span>ouis </span>G<span>ODLEWSKI</span></h3>
 		</router-link>
-		<ul class="links">
+		<ul class="links primary">
 			<li>
 				<router-link to="/about">{{ $t("nav.about") }}</router-link>
 			</li>
-
 			<li>
-				<a href="mailto:louis.godlewski@gmail.com">{{ $t("nav.contact") }}</a>
+				<a href="mailto:louis.godlewski@gmail.com">
+					<Icon
+						name="calendar"
+						size="sm"
+						class="pointed"
+						:alt="$t(`nav.contact`)"
+					/>
+				</a>
 			</li>
 			<li>
-				<select class="lang" @change="changeLocale($event.target.value)">
-					<option value="en">🇬🇧</option>
-					<option value="fr">🇫🇷</option>
-				</select>
+				<Icon
+					@click="changeLocale(name.substr(0, 2))"
+					:name="'flag-' + name"
+					size="sm"
+					class="pointed"
+					:alt="$t(`nav.lang.${name}`)"
+				/>
 			</li>
 		</ul>
 	</nav>
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-class-component";
+import { Vue, Options } from "vue-class-component";
 import { i18n } from "@/main";
+import Icon from "@/components/ui/Icon.vue";
 
+@Options({ components: { Icon } })
 export default class Header extends Vue {
+	get name() {
+		return i18n.global.locale === "fr" ? "english" : "french";
+	}
 	protected changeLocale(lang: string): void {
 		i18n.global.locale = lang;
 	}
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 nav#main-nav {
 	@include sized(100%, $nav-height);
-	@include flex(row nowrap, space-between);
+	@include flex(row nowrap, space-between, center);
 	@include shadowed;
-	position: fixed;
-	top: 0;
 	background: $white;
 	color: $primary;
 	padding: $pad-sides-md;
@@ -59,14 +71,17 @@ nav#main-nav {
 			opacity: 1;
 		}
 	}
-	.hamburger {
-		display: none;
-	}
 	ul.links {
-		@include flex(row nowrap, space-evenly);
+		@include flex(row nowrap, space-evenly, flex-end);
 		li {
 			list-style-type: none;
-			padding: 0.5rem;
+			height: $nav-height;
+			padding: 0.7rem;
+			padding-top: ($nav-height)/4;
+			border-radius: $radius-xs;
+			&:hover {
+				background: $beige;
+			}
 		}
 	}
 }
