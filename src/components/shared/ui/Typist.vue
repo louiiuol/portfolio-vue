@@ -1,6 +1,6 @@
 <template>
 	<component :is="tag" class="typist">
-		<span id="lambda">λ</span> {{ typingValue }}
+		<span class="lambda">λ</span> {{ typingValue }}
 		<span class="cursor" :class="{ typing: isTyping }">&nbsp;</span>
 	</component>
 </template>
@@ -100,7 +100,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .typist {
 	font-family: open24, sans-serif;
 	font-weight: normal;
@@ -108,32 +108,22 @@ export default defineComponent({
 	background-color: rgba($legend-dark, 0.8);
 	border-radius: $radius-md;
 	padding: $pad-md;
+	display: inline-block;
 	@include shadowed(true);
-	span#lambda {
+	span.lambda {
 		color: $accent;
 	}
-
 	span.cursor {
+		$cursor-width: 3px;
 		display: inline-block;
-		margin-left: 3px;
+		margin-left: $cursor-width;
 		padding-bottom: 5px;
-		width: 4px;
-		background-color: white;
-		animation: cursorBlink 1s infinite;
+		width: $cursor-width;
+		background-color: currentColor;
+		animation: blink $transition-medium infinite;
 	}
 	span.cursor.typing {
 		animation: none;
-	}
-	@keyframes cursorBlink {
-		49% {
-			background-color: white;
-		}
-		50% {
-			background-color: transparent;
-		}
-		99% {
-			background-color: transparent;
-		}
 	}
 }
 </style>

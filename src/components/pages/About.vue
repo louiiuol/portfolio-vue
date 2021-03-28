@@ -1,7 +1,7 @@
 <template>
 	<Container id="about" class="has-space justify-evenly items-start">
 		<header class="beige">
-			<Typist :toType="$t('about.title')" tag="h1" :infinite="true" />
+			<Typist toType="about.title" tag="h1" :infinite="true" />
 		</header>
 	</Container>
 </template>

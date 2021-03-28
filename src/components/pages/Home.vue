@@ -55,28 +55,4 @@ symbol#logo {
 		}
 	}
 }
-
-@keyframes drawing {
-	30% {
-		fill: transparent;
-	}
-	95% {
-		stroke-dashoffset: 0;
-	}
-	100% {
-		fill: white;
-	}
-}
-
-@keyframes pulse {
-	0% {
-		transform: scale(1);
-	}
-	50% {
-		transform: scale(1.07);
-	}
-	100% {
-		transform: scale(1);
-	}
-}
 </style>

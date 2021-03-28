@@ -4,7 +4,7 @@
 	</main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 main.container {
 	@include sized($window-width, $main-container-height);
 	@include overflow-y;
