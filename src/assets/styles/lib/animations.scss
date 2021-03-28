@@ -1,0 +1,36 @@
+//* =================
+//* GLOBAL ANIMATIONS
+//* ===============*/
+
+//* Application background's animation
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+//* Vue transition's generated classes
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s ease-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+
+//* Simple Fade effect to show element
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
