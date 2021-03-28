@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/pages/Home.vue";
+import Home from "./components/pages/Home.vue";
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
 		name: "About",
 		//* this generates a separate chunk for this route
 		//* which is lazy-loaded when the route is visited.
-		component: () => import("../views/pages/About.vue")
+		component: () => import("./components/pages/About.vue")
 	}
 ];
 

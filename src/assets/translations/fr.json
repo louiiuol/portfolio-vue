@@ -1,12 +1,15 @@
 {
-    "home": {"title":"Bienvenue !!"},
+    "home": {
+        "title":"Bienvenue !!",
+        "icon-alt": "Logo de Louis Godlewski",
+        "show-more": "plus d'informations"
+    },
     "about": { "title": "Page d'information"},
     "nav": {
         "contact": "icône de contact",
         "about": "à propos",
-        "lang": {
-            "english": "drapeau anglais",
-            "french": "drapeau français"
-        }
-    }
+        "skills": "compétences",
+        "experiences": "expériences"
+    },
+    "icons-alt": "icône svg de '{icon}'"
 }

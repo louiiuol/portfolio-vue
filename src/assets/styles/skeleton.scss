@@ -17,15 +17,51 @@ html {
 }
 
 //* Removes purple color & basic link style
-a {
+a,
+span.link {
 	color: $primary;
 	transition: color $transition-fastest;
 	text-decoration: none;
+	font-weight: 600;
 	&:hover {
 		color: $primary-light;
 	}
 }
 
+.link:not(.quarter-link) {
+	cursor: pointer;
+	position: relative;
+	padding: 0.25rem 0;
+	&::before {
+		content: "";
+		@include positioned(absolute, 100%, 50%);
+		@include sized(0, 2px);
+		background: $primary-light;
+		transition: $transition-fastest;
+	}
+	&:hover::before,
+	&.selected::before,
+	&:active::before {
+		width: 80%;
+	}
+	&.selected {
+		color: $primary-light;
+	}
+}
+
+.btn {
+	display: inline-block;
+	padding: $pad-md;
+	border-radius: $radius-md;
+	border: 1px solid white;
+	width: fit-content;
+	margin: 0 auto;
+	@include shadowed;
+	&:hover {
+		background-color: white;
+		color: $primary;
+	}
+}
 //* =======================
 //* GLOBAL SCROLLBAR STYLES
 //* =======================*/
@@ -126,7 +162,7 @@ a {
 }
 
 //* Defines fonts styles for Typist title
-// TODO: export to specific component
+// TODO export to specific component
 .typist {
 	font-family: open24, sans-serif;
 }
@@ -363,4 +399,13 @@ p {
 		-webkit-mask-position: -150% top;
 		mask-position: -150% top;
 	}
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s ease-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
 }

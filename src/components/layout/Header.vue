@@ -1,24 +1,20 @@
 <template>
 	<nav id="main-nav">
 		<router-link to="/">
-			<h3>L<span>ouis </span>G<span>ODLEWSKI</span></h3>
+			<h3 class="link">L<span>ouis </span>G<span>ODLEWSKI</span></h3>
 		</router-link>
 		<ul class="links primary">
-			<li>
-				<router-link to="/about">{{ $t("nav.about") }}</router-link>
-			</li>
+			<dropdown :name="$t('nav.about')" :links="links" />
 			<li class="has-icon">
 				<a href="mailto:louis.godlewski@gmail.com">
-					<Icon name="calendar" size="sm" :alt="$t(`nav.contact`)" />
+					<Icon name="calendar" class="sm" />
 				</a>
 			</li>
 			<li class="has-icon">
 				<Icon
-					@click="changeLocale(name.substr(0, 2))"
-					:name="'flag-' + name"
-					size="sm"
-					class="pointed"
-					:alt="$t(`nav.lang.${name}`)"
+					@click="changeLocale(langName.substr(0, 2))"
+					:name="'flag-' + langName"
+					class="sm pointed"
 				/>
 			</li>
 		</ul>
@@ -28,17 +24,19 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { i18n } from "@/main";
-import Icon from "@/components/shared/ui/Icon.vue";
+import { Dropdown, Icon } from "@/components/shared/ui";
 export default defineComponent({
 	name: "Header",
-	components: { Icon },
+	components: { Icon, Dropdown },
 	setup() {
-		return {
-			changeLocale: function(lang: string): void {
-				i18n.global.locale = lang;
-			},
-			name: computed(() => (i18n.global.locale === "fr" ? "english" : "french"))
+		const links = ["about", "experiences", "skills"];
+		const langName = computed(() =>
+			i18n.global.locale === "fr" ? "english" : "french"
+		);
+		const changeLocale = function(lang: string): void {
+			i18n.global.locale = lang;
 		};
+		return { changeLocale, langName, links };
 	}
 });
 </script>
@@ -73,13 +71,9 @@ nav#main-nav {
 		li {
 			list-style-type: none;
 			height: $nav-height;
-			min-width: 75px;
 			padding: 0.7rem;
 			padding-top: ($nav-height)/4;
 			border-radius: $radius-xs;
-			&.has-icon {
-				min-width: 50px;
-			}
 			&:hover {
 				background: $beige;
 			}

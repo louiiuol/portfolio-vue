@@ -1,12 +1,15 @@
 {
-    "home": {"title":"Welcome !!"},
+    "home": {
+        "title":"Welcome !! Glad you find me, you can discover everything about me from here, enjoy the trip ✌",
+        "icon-alt": "Louis Godlewski's logo",
+        "show-more": "more informations"
+    },
     "about": { "title": "This is an about page"},
     "nav": { 
         "contact": "contact icon",
         "about": "about",
-        "lang": {
-            "english": "english's flag",
-            "french": "french's flag"
-        }
-    }
+        "skills": "skills",
+        "experiences": "experiences"
+    },
+    "icons-alt": "svg icon of '{icon}'"
 }

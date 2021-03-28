@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import { createI18n } from "vue-i18n";
+import VueClickAway from "vue3-click-away";
 
 import App from "./App.vue";
 import "./registerServiceWorker";
@@ -32,4 +33,5 @@ createApp(App)
 	.use(store)
 	.use(router)
 	.use(i18n)
+	.use(VueClickAway)
 	.mount("#portfolio");

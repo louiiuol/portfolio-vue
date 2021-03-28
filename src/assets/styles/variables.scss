@@ -148,3 +148,16 @@ $window-width: 100vw;
 	overflow: hidden;
 	overflow-y: auto;
 }
+
+/* Positioned element with top and left properties */
+@mixin positioned($position: relative, $top: 50%, $left: 50%) {
+	position: $position;
+	top: $top;
+	left: $left;
+	transform: translate(-($left), -($top));
+}
+
+@mixin widthCentered($width, $top-bottom: 0, $left-right: auto) {
+	max-width: $width;
+	margin: $top-bottom $left-right;
+}
