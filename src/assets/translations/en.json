@@ -1,9 +1,9 @@
 {
     "home": {
-        "title":"Welcome, Glad you found this portfolio ! \n You can discover everything about my universe from this platform, \n enjoy the trip ✌",
+        "title":"Welcome ! \n Glad you found this portfolio ! \n You can discover here all my universe...\n Enjoy the trip !",
         "show-more": "more informations"
     },
-    "about": { "title": "This is an about page"},
+    "about": { "title": "UI / UX Designer \n web fullstack JS developer \n APIs and databases designer"},
     "nav": { 
         "contact": "contact icon",
         "about": "about",

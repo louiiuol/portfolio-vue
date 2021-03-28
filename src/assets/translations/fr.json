@@ -1,9 +1,9 @@
 {
     "home": {
-        "title":"Bienvenue visiteur sur mon portfolio ! \n Vous pouvez découvrir tout mon univers depuis cet espace \n Bonne ballade numérique ✌",
+        "title":"Bienvenue sur mon portfolio ! \n Vous pouvez y découvrir tout mon univers ...\n Bonne ballade numérique !",
         "show-more": "plus d'informations"
     },
-    "about": { "title": "Page d'information"},
+    "about": { "title": "Designeur UI / UX \n développeur web fullstack JS \n conecpteur d'APIs et de bases de données"},
     "nav": {
         "contact": "icône de contact",
         "about": "à propos",

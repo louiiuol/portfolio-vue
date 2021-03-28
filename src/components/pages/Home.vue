@@ -1,9 +1,7 @@
 <template>
 	<Container id="home" class="rows justify-around">
 		<Icon name="logo" />
-		<h1 class="title beige centered typist">
-			<Typist :toType="$t('home.title')" />
-		</h1>
+		<Typist class="title beige" toType="home.title" tag="h1" />
 		<router-link class="btn white" to="/about">
 			{{ $t("home.show-more") }}
 		</router-link>
@@ -26,10 +24,9 @@ svg#logo {
 	@include widthCentered(80%);
 }
 h1.title.typist {
-	@include widthCentered(60%);
-	@include for-phone-and-tablet {
-		@include widthCentered(85%);
-	}
+	font-size: 2rem;
+	margin: 0 auto;
+	max-width: 80vw;
 }
 #home h1.title.typist,
 #home a.btn {

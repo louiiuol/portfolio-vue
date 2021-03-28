@@ -66,8 +66,13 @@
 }
 
 //* Utilitary mixins
-@mixin shadowed($size: 1px 2px 4px, $color: #000, $alpha: 0.6) {
-	box-shadow: $size rgba($color, $alpha);
+@mixin shadowed($inset: false, $size: 1px 2px 4px, $color: #000, $alpha: 0.6) {
+	@if $inset {
+		box-shadow: -1px -2px 4px inset rgba($color, 0.3),
+			-1px 2px 4px inset rgba($color, 0.3);
+	} @else {
+		box-shadow: $size rgba($color, $alpha);
+	}
 }
 @mixin sized($width: 100%, $height: 100%) {
 	width: $width;
