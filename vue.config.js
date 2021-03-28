@@ -1,9 +1,8 @@
-/* eslint-disable prettier/prettier */
 module.exports = {
 	css: {
 		loaderOptions: {
 			sass: {
-				//! Injects variables.scss into every .vue files
+				//* Injects variables.scss into every .vue files
 				additionalData: `@import "@/assets/styles/variables.scss";`
 			}
 		}

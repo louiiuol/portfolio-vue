@@ -1,15 +1,12 @@
 # EditorConfig is awesome (home): https://EditorConfig.org
 
-# top-most EditorConfig file
-root = true
+root = true # top-most EditorConfig file
 
-# Unix-style newlines with a newline ending every file
 [*]
 charset = utf-8
-end_of_line = lf
+end_of_line = lf # Unix-style newlines with a newline ending every file
 insert_final_newline = true
 indent_style = space
-
 
 [*.{vue,ts}]
 indent_size = 2
@@ -17,8 +14,6 @@ indent_size = 2
 [*.{scss, js}]
 indent_size = 2
 
-
-# package.json or .travis.yml rules
-[{package.json,.travis.yml}]
+[{package.json,.travis.yml}] # package.json or .travis.yml rules
 indent_style = space
 indent_size = 2

@@ -1,5 +1,5 @@
 <template>
-	<svg :id="name" :alt="alt" :class="className">
+	<svg :id="name" :alt="$t('icons-alt', { icon: name })" class="icon">
 		<use v-if="href" :href="href"></use>
 	</svg>
 </template>
@@ -10,28 +10,24 @@ import { defineComponent, computed } from "vue";
 export default defineComponent({
 	name: "Icon",
 	props: {
-		name: String,
-		size: String,
-		alt: String
+		name: {
+			type: String,
+			required: true
+		}
 	},
 	setup(props) {
-		return {
-			//* Returns dynamically imported icon with given props.name
-			// TODO add verifications for icons' name
-			href: computed(() => {
-				let svg: string;
-				try {
-					svg = require(`@/assets/images/svg/icons.svg`) + `#${props.name}`;
-				} catch (error) {
-					svg = "";
-					console.error(error);
-				}
-				return svg;
-			}),
-			//* Returns dynamically classes depending on given props.size / shape
-			// TODO add more style depending on shapes
-			className: computed(() => (props.size ? `icon-${props.size}` : "icon"))
-		};
+		//* Returns dynamically imported icon with given props.name
+		// TODO add verifications for icons' name
+		const href = computed<string>(() => {
+			let svg = "";
+			try {
+				svg = require(`@/assets/images/svg/icons.svg`) + `#${props.name}`;
+			} catch (error) {
+				console.error("error fetching icon: ", error);
+			}
+			return svg;
+		});
+		return { href };
 	}
 });
 </script>
@@ -45,31 +41,30 @@ svg {
 	fill: currentColor;
 	&.icon {
 		width: 100%;
-		&-xs {
+		&.xs {
 			width: 1rem;
 			height: 1rem;
 		}
-		&-sm {
+		&.sm {
 			width: 1.5rem;
 			height: 1.5rem;
 		}
-		&-md {
+		&.md {
 			width: 2.5rem;
 			height: 2.5rem;
 		}
-		&-lg {
+		&.lg {
 			width: 4rem;
 			height: 4rem;
 		}
-		&-xl {
+		&.xl {
 			width: 6rem;
 			height: 6rem;
 		}
 	}
-	&.circled {
+	&.circle {
 		border: 1px solid currentColor;
 		padding: 0.25rem;
-		border-radius: 50%;
 	}
 }
 </style>
