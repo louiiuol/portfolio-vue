@@ -1,6 +1,6 @@
 <template class="typist">
 	{{ typeValue }}
-	<span class="cursor" :class="{ typing: isTyping }">&nbsp;</span>
+	<span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
 </template>
 
 <script lang="ts">
@@ -17,52 +17,54 @@ export default defineComponent({
 	data: function() {
 		return {
 			typeValue: "",
-			isTyping: false,
+			typeStatus: false,
 			typingSpeed: 60,
 			erasingSpeed: 35,
 			newTextDelay: 2000,
-			typingArrayIndex: 0,
+			typeArrayIndex: 0,
 			charIndex: 0
 		};
 	},
 	computed: {
-		typingArray: function() {
+		typeArray: function(): string[] {
 			return this.toType.split("\n").map(element => element.trim());
 		},
-		currentString: function() {
-			return this.typingArray[this.typingArrayIndex];
+		currentString: function(): string {
+			return this.typeArray[this.typeArrayIndex];
 		}
 	},
 	methods: {
 		typeText() {
 			if (this.charIndex < this.currentString.length) {
-				if (!this.isTyping) this.isTyping = true;
+				if (!this.typeStatus) this.typeStatus = true;
 				this.typeValue += this.currentString.charAt(this.charIndex);
 				this.charIndex += 1;
 				setTimeout(this.typeText, this.typingSpeed);
 			} else {
-				this.isTyping = false;
-				if (this.typingArrayIndex < this.typingArray.length - 1)
+				this.typeStatus = false;
+				if (this.typeArrayIndex < this.typeArray.length - 1)
 					setTimeout(this.eraseText, this.newTextDelay);
 			}
 		},
 		eraseText() {
 			if (this.charIndex > 0) {
-				if (!this.isTyping) this.isTyping = true;
+				if (!this.typeStatus) this.typeStatus = true;
+
 				this.typeValue = this.currentString.substring(0, this.charIndex - 1);
 				this.charIndex -= 1;
 				setTimeout(this.eraseText, this.erasingSpeed);
 			} else {
-				this.isTyping = false;
-				this.typingArrayIndex += 1;
-				if (this.typingArrayIndex >= this.typingArray.length)
-					this.typingArrayIndex = 0;
+				this.typeStatus = false;
+				this.typeArrayIndex += 1;
+				if (this.typeArrayIndex >= this.typeArray.length)
+					this.typeArrayIndex = 0;
+
 				setTimeout(this.typeText, this.typingSpeed + 1000);
 			}
 		}
 	},
 	created() {
-		setTimeout(this.typeText, 200);
+		setTimeout(this.typeText, this.newTextDelay + 200);
 	}
 });
 </script>
