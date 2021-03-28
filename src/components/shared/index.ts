@@ -1,4 +1,4 @@
-import { Dropdown, Icon } from "./ui";
+import { Dropdown, Icon, Typist } from "./ui";
 import { Container } from "./layout";
 
-export { Dropdown, Icon, Container };
+export { Dropdown, Icon, Container, Typist };

@@ -2,7 +2,7 @@
 	<Container id="home" class="rows justify-around">
 		<Icon name="logo" />
 		<h1 class="title beige centered typist">
-			{{ $t("home.title") }}
+			<Typist :titles="[$t('home.title')]" />
 		</h1>
 		<router-link class="btn white" to="/about">
 			{{ $t("home.show-more") }}
@@ -11,11 +11,11 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Icon, Container } from "@/components/shared/";
+import { Icon, Container, Typist } from "@/components/shared/";
 
 export default defineComponent({
 	name: "Home",
-	components: { Icon, Container }
+	components: { Icon, Container, Typist }
 });
 </script>
 
@@ -37,10 +37,10 @@ h1.title.typist {
 	animation: fadeIn $transition-fastest forwards;
 }
 #home h1.title.typist {
-	animation-delay: 5s;
+	animation-delay: 1s;
 }
 #home a.btn {
-	animation-delay: 7s;
+	animation-delay: 8s;
 }
 
 symbol#logo {
@@ -68,15 +68,6 @@ symbol#logo {
 	}
 	100% {
 		fill: white;
-	}
-}
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
 	}
 }
 </style>
