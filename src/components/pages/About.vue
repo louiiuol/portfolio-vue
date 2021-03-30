@@ -1,18 +1,16 @@
 <template>
 	<Container id="about" class="has-space justify-evenly items-start">
-		<h1 class="beige typist">
-			<Icon name="infos" class="sm circled" />
-			{{ $t("about.title") }}
-		</h1>
+		<header class="beige">
+			<Typist toType="about.title" tag="h1" :infinite="true" />
+		</header>
 	</Container>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Icon } from "@/components/shared/ui/";
-import Container from "@/components/shared/layout/Container.vue";
+import { Container, Typist } from "@/components/shared/";
 
 export default defineComponent({
 	name: "About",
-	components: { Icon, Container }
+	components: { Container, Typist }
 });
 </script>

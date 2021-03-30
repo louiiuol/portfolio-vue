@@ -30,7 +30,7 @@ export default defineComponent({
 	name: "Header",
 	components: { Icon, Dropdown },
 	setup() {
-		const links = ["about", "experiences", "skills"];
+		const links = ["about"];
 		const langName = computed(() =>
 			i18n.global.locale === "fr" ? "english" : "french"
 		);

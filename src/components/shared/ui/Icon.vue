@@ -10,7 +10,10 @@ import { defineComponent, computed } from "vue";
 export default defineComponent({
 	name: "Icon",
 	props: {
-		name: String
+		name: {
+			type: String,
+			required: true
+		}
 	},
 	setup(props) {
 		//* Returns dynamically imported icon with given props.name
@@ -24,13 +27,12 @@ export default defineComponent({
 			}
 			return svg;
 		});
-		//* Returns dynamically classes depending on given props.size / shape
 		return { href };
 	}
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 svg {
 	&:empty {
 		background: $beige-darker;
@@ -60,10 +62,9 @@ svg {
 			height: 6rem;
 		}
 	}
-	&.circled {
+	&.circle {
 		border: 1px solid currentColor;
 		padding: 0.25rem;
-		border-radius: 50%;
 	}
 }
 </style>

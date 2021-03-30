@@ -17,5 +17,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/skeleton.scss";
+@import "@/assets/styles/index.module.scss";
 </style>

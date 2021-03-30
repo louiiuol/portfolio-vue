@@ -1,9 +1,7 @@
 <template>
 	<Container id="home" class="rows justify-around">
 		<Icon name="logo" />
-		<h1 class="title beige centered typist">
-			<Typist :titles="[$t('home.title')]" />
-		</h1>
+		<Typist class="title beige" toType="home.title" tag="h1" />
 		<router-link class="btn white" to="/about">
 			{{ $t("home.show-more") }}
 		</router-link>
@@ -26,21 +24,20 @@ svg#logo {
 	@include widthCentered(80%);
 }
 h1.title.typist {
-	@include widthCentered(65%);
-	@include for-phone-and-tablet {
-		@include widthCentered(85%);
-	}
+	font-size: 2rem;
+	margin: 0 auto;
+	max-width: 80vw;
 }
 #home h1.title.typist,
 #home a.btn {
 	opacity: 0;
 	animation: fadeIn $transition-fastest forwards;
 }
-#home h1.title.typist {
-	animation-delay: 1s;
-}
+
 #home a.btn {
-	animation-delay: 8s;
+	animation: fadeIn $transition-fastest forwards,
+		pulse $transition-medium infinite;
+	animation-delay: 15s;
 }
 
 symbol#logo {
@@ -56,18 +53,6 @@ symbol#logo {
 				animation-delay: #{0.25 * $i}s;
 			}
 		}
-	}
-}
-
-@keyframes drawing {
-	30% {
-		fill: transparent;
-	}
-	95% {
-		stroke-dashoffset: 0;
-	}
-	100% {
-		fill: white;
 	}
 }
 </style>

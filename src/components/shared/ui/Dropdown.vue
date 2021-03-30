@@ -40,17 +40,17 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dropdown-container {
 	position: relative;
 	.dropdown {
 		position: absolute;
-		top: 60px;
+		top: ($nav-height) + 15px;
 		right: 0;
-		width: fit-content;
+		width: max-content;
 		padding: 5px;
 		border-radius: $radius-sm;
-		@include shadowed;
+		@include shadowed(true);
 		background: white;
 		ul.links {
 			flex-direction: column !important;

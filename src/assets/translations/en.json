@@ -1,10 +1,9 @@
 {
     "home": {
-        "title":"Welcome !! Glad you find me, you can discover everything about me from here, enjoy the trip ✌",
-        "icon-alt": "Louis Godlewski's logo",
+        "title":"Welcome ! \n Glad you found this portfolio ! \n You can discover all my universe from here...\n Enjoy the trip !",
         "show-more": "more informations"
     },
-    "about": { "title": "This is an about page"},
+    "about": { "title": "UI / UX designer \n Fullstack web JS developer \n APIs and databases designer"},
     "nav": { 
         "contact": "contact icon",
         "about": "about",
