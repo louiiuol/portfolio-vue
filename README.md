@@ -10,41 +10,47 @@
 - [Sass](https://sass-lang.com/) - Extension of feature for CSS
 - [Github Pages](https://pages.github.com/) - Host solution for static webapp
 
-## Available Scripts
+### Available Scripts
 
-In the project directory, you can run the following commands:
+From this directory you can run the following commands:
 
-### Project setup
+#### Install vue-cli globally
+
+```bash
+npm install -g @vue/cli
+```
+
+#### Install project's dependencies
 
 ```bash
 npm install
 ```
 
-### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 
 ```bash
 npm run serve
 ```
 
-### Compiles and minifies for production
+#### Compiles and minifies for production
 
 ```bash
 npm run build
 ```
 
-### Run your unit tests
+#### Run your unit tests
 
 ```bash
 npm run test:unit
 ```
 
-### Run your end-to-end tests
+#### Run your end-to-end tests
 
 ```bash
 npm run test:e2e
 ```
 
-### Lints and fixes files
+#### Lints and fixes files
 
 ```bash
 npm run lint
