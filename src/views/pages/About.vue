@@ -7,7 +7,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Container, Typist } from "@/components/shared/";
+import { Container, Typist } from "@/views/shared";
 
 export default defineComponent({
 	name: "About",

@@ -10,23 +10,13 @@ import { defineComponent, computed } from "vue";
 export default defineComponent({
 	name: "Icon",
 	props: {
-		name: {
-			type: String,
-			required: true
-		}
+		name: { type: String, required: true }
 	},
 	setup(props) {
-		//* Returns dynamically imported icon with given props.name
-		// TODO add verifications for icons' name
-		const href = computed<string>(() => {
-			let svg = "";
-			try {
-				svg = require(`@/assets/images/svg/icons.svg`) + `#${props.name}`;
-			} catch (error) {
-				console.error("error fetching icon: ", error);
-			}
-			return svg;
-		});
+		// Returns dynamically imported icon with given props.name
+		const fetchIcon = (): string =>
+			require(`@/assets/images/svg/icons.svg`) + `#${props.name}`; // TODO add verifications for icons' name
+		const href = computed<string>(() => fetchIcon());
 		return { href };
 	}
 });

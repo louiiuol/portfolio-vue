@@ -12,18 +12,9 @@ import { i18n } from "@/main";
 
 export default defineComponent({
 	props: {
-		toType: {
-			type: String,
-			required: true
-		},
-		tag: {
-			type: String,
-			required: true
-		},
-		infinite: {
-			type: Boolean,
-			required: false
-		}
+		toType: { type: String, required: true },
+		tag: { type: String, required: true },
+		infinite: { type: Boolean, required: false }
 	},
 	data: function() {
 		return {
@@ -110,6 +101,9 @@ export default defineComponent({
 	padding: $pad-md;
 	display: inline-block;
 	@include shadowed(true);
+	max-width: 80vw;
+	margin: 0 auto;
+	font-size: 2rem;
 	span.lambda {
 		color: $accent;
 	}

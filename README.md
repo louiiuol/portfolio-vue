@@ -12,42 +12,15 @@
 
 ## Available Scripts
 
-In the project directory, you can run the following commands:
-
-### Project setup
+In the project directory, you can run the following commands: (npm is required)
 
 ```bash
-npm install
-```
-
-### Compiles and hot-reloads for development
-
-```bash
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```bash
-npm run build
-```
-
-### Run your unit tests
-
-```bash
-npm run test:unit
-```
-
-### Run your end-to-end tests
-
-```bash
-npm run test:e2e
-```
-
-### Lints and fixes files
-
-```bash
-npm run lint
+npm install # install dependencies
+npm run serve # compiles and hot-reloads for "development"
+npm run build # compiles and minifies for "production"
+npm run test:unit # runs "unit" tests
+npm run test:e2e # runs "end-to-end" tests
+npm run lint # Lints and fixes files
 ```
 
 ## Contributing 🙌

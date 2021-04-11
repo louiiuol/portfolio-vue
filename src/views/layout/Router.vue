@@ -1,5 +1,4 @@
 <template>
-	<Header />
 	<router-view v-slot="{ Component }">
 		<transition name="fade" mode="out-in">
 			<component :is="Component" />
@@ -8,14 +7,12 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import Header from "@/components/layout/Header.vue";
+import { useScroll } from "@/services/uses";
 
 export default defineComponent({
-	name: "App",
-	components: { Header }
+	name: "Router",
+	setup() {
+		useScroll(); // enable scrolling navigation
+	}
 });
 </script>
-
-<style lang="scss">
-@import "@/assets/styles/index.module.scss";
-</style>

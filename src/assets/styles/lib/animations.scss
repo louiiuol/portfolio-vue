@@ -25,6 +25,11 @@
 	opacity: 0;
 }
 
+.fading {
+	opacity: 0;
+	animation: fadeIn $transition-fastest forwards;
+}
+
 //* Simple Fade effect to show element
 @keyframes fadeIn {
 	0% {

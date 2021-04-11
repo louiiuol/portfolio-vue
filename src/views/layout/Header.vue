@@ -24,7 +24,7 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { i18n } from "@/main";
-import { Dropdown, Icon } from "@/components/shared/ui";
+import { Dropdown, Icon } from "@/views/shared";
 
 export default defineComponent({
 	name: "Header",

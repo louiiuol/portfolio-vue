@@ -1,16 +1,12 @@
 <template>
 	<li class="dropdown-container">
-		<span class="link" @click="state.isToggled = !state.isToggled">
+		<span class="link" @click="isToggled = !isToggled">
 			{{ name }}
 		</span>
-		<div v-if="state.isToggled" class="dropdown" v-click-away="onClickAway">
+		<div v-if="isToggled" class="dropdown" v-click-away="toggle">
 			<ul class="links">
 				<li v-for="link in links" :key="link">
-					<router-link
-						@click="state.isToggled = false"
-						class="link"
-						:to="'/' + link"
-					>
+					<router-link @click="toggle" class="link" :to="'/' + link">
 						{{ $t("nav." + link) }}
 					</router-link>
 				</li>
@@ -20,22 +16,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent } from "vue";
+import { useToggler } from "@/services/uses";
 
 export default defineComponent({
 	name: "Dropdown",
 	props: {
-		name: String,
-		links: Array
+		name: { type: String, required: true },
+		links: { type: Array, required: true }
 	},
 	setup() {
-		const state = reactive({
-			isToggled: false
-		});
-		const onClickAway = function(): void {
-			state.isToggled = false;
-		};
-		return { state, onClickAway };
+		const { isToggled, toggle } = useToggler();
+		return { isToggled, toggle };
 	}
 });
 </script>

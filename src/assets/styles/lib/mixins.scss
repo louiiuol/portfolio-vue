@@ -19,7 +19,7 @@
 
 //* Dynamic font import
 @mixin font-face($name, $fileName, $weight, $style) {
-	$url: "assets/fonts/" + $name + "/" + $fileName + ".ttf";
+	$url: "../assets/fonts/" + $name + "/" + $fileName + ".ttf";
 	@font-face {
 		font-family: $name;
 		src: url($url) format("truetype");
@@ -103,4 +103,10 @@
 @mixin widthCentered($width, $top-bottom: 0, $left-right: auto) {
 	max-width: $width;
 	margin: $top-bottom $left-right;
+}
+
+@mixin stroke($color, $dash) {
+	stroke: $color;
+	stroke-dasharray: $dash;
+	stroke-dashoffset: $dash;
 }
