@@ -6,87 +6,81 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import { setTimeout } from "timers";
 import { i18n } from "@/main";
 
+/* eslint-disable @typescript-eslint/no-use-before-define */
 export default defineComponent({
+	name: "Typist",
 	props: {
 		toType: { type: String, required: true },
 		tag: { type: String, required: true },
 		infinite: { type: Boolean, required: false }
 	},
-	data: function() {
-		return {
-			typingValue: "",
-			isTyping: false,
-			typingSpeed: 60,
-			erasingSpeed: 35,
-			newTextDelay: 2000,
-			typingArrayIndex: 0,
-			charIndex: 0,
-			defaultLang: i18n.global.locale
+	setup(props) {
+		const typingValue = ref(""),
+			isTyping = ref(false),
+			charIndex = ref(0),
+			defaultLang = ref(i18n.global.locale),
+			typingArrayIndex = ref(0),
+			typingSpeed = 60,
+			erasingSpeed = 35,
+			newTextDelay = 200;
+
+		const translation = computed(() => i18n.global.t(props.toType));
+		const typingArray = computed(() =>
+			translation.value.split("\n").map(el => el.trim())
+		);
+		const currentString = computed(
+			() => typingArray.value[typingArrayIndex.value]
+		);
+		const lang = computed(() => i18n.global.locale);
+		const handleLanguageChanges = function(): void {
+			if (lang.value != defaultLang.value) {
+				defaultLang.value = lang.value;
+				charIndex.value = 0;
+				typingValue.value = "";
+				typingArrayIndex.value = 0;
+			}
 		};
-	},
-	computed: {
-		translation: function(): string {
-			return i18n.global.t(this.toType);
-		},
-		typingArray: function(): string[] {
-			return this.translation.split("\n").map(el => el.trim());
-		},
-		currentString: function(): string {
-			return this.typingArray[this.typingArrayIndex];
-		},
-		lang: function(): string {
-			return i18n.global.locale;
-		}
-	},
-	methods: {
-		typeText(): void {
-			this.checkLang();
-			if (this.charIndex < this.currentString.length) {
-				if (!this.isTyping) this.isTyping = true;
-				this.typingValue += this.currentString.charAt(this.charIndex);
-				this.charIndex += 1;
-				setTimeout(this.typeText, this.typingSpeed);
+		const typeText = function(): void {
+			handleLanguageChanges();
+			if (charIndex.value < currentString.value.length) {
+				if (!isTyping.value) isTyping.value = true;
+				typingValue.value += currentString.value.charAt(charIndex.value);
+				charIndex.value += 1;
+				setTimeout(typeText, typingSpeed);
 			} else {
-				this.isTyping = false;
+				isTyping.value = false;
 				if (
-					this.typingArrayIndex < this.typingArray.length - 1 ||
-					this.infinite
+					typingArrayIndex.value < typingArray.value.length - 1 ||
+					props.infinite
 				)
-					setTimeout(this.eraseText, this.newTextDelay);
-				else setInterval(this.checkLang, 200);
+					setTimeout(eraseText, newTextDelay);
+				else setInterval(handleLanguageChanges, 200);
 			}
-		},
-		eraseText(): void {
-			this.checkLang();
-			if (this.charIndex > 0) {
-				if (!this.isTyping) this.isTyping = true;
-				this.typingValue = this.currentString.substring(0, this.charIndex - 1);
-				this.charIndex -= 1;
-				setTimeout(this.eraseText, this.erasingSpeed);
+		};
+		const eraseText = function(): void {
+			handleLanguageChanges();
+			if (charIndex.value > 0) {
+				if (!isTyping.value) isTyping.value = true;
+				typingValue.value = currentString.value.substring(
+					0,
+					charIndex.value - 1
+				);
+				charIndex.value -= 1;
+				setTimeout(eraseText, erasingSpeed);
 			} else {
-				this.isTyping = false;
-				this.typingArrayIndex += 1;
-				if (this.typingArrayIndex >= this.typingArray.length)
-					this.typingArrayIndex = 0;
-				setTimeout(this.typeText, this.typingSpeed + 1000);
+				isTyping.value = false;
+				typingArrayIndex.value += 1;
+				if (typingArrayIndex.value >= typingArray.value.length)
+					typingArrayIndex.value = 0;
+				setTimeout(typeText, typingSpeed + 1000);
 			}
-		},
-		checkLang(): void {
-			if (this.lang != this.defaultLang) {
-				this.defaultLang = this.lang;
-				this.charIndex = 0;
-				this.typingValue = "";
-				this.typingArrayIndex = 0;
-				this.typeText();
-			}
-		}
-	},
-	created() {
-		setTimeout(this.typeText, 1000);
+		};
+		setTimeout(typeText, 1000);
+		return { typingValue, isTyping };
 	}
 });
 </script>
